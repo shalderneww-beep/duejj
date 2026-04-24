@@ -1,0 +1,16 @@
+{
+  "name": "MindFuel Daily",
+  "short_name": "MindFuel",
+  "description": "Premium daily motivation and wisdom by Sanntanu Halder.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0A0A0A",
+  "theme_color": "#C5A059",
+  "icons": [
+    {
+      "src": "https://img.icons8.com/ios-filled/512/C5A059/sparkling.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

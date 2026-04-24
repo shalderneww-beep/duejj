@@ -67,29 +67,29 @@ import download from 'downloadjs';
 const BottomNav = ({ activeTab, onTabChange, theme }: { activeTab: Tab, onTabChange: (tab: Tab) => void, theme: Theme }) => {
   const tabs: { id: Tab; icon: any; label: string }[] = [
     { id: 'home', icon: Home, label: 'Home' },
-    { id: 'categories', icon: Layers, label: 'Categories' },
-    { id: 'favorites', icon: Heart, label: 'Favorites' },
+    { id: 'categories', icon: Layers, label: 'Mastery' },
+    { id: 'favorites', icon: Heart, label: 'Saved' },
     { id: 'settings', icon: SettingsIcon, label: 'Settings' },
   ];
 
   return (
-    <nav className={`fixed bottom-0 left-0 right-0 z-50 backdrop-blur-xl border-t-2 pb-safe shadow-[0_-10px_40px_rgba(0,0,0,0.1)] transition-all duration-500 ${
+    <nav className={`fixed bottom-0 left-0 right-0 z-50 backdrop-blur-xl border-t pb-safe shadow-[0_-10px_40px_rgba(0,0,0,0.1)] transition-all duration-500 ${
       theme === 'dark' ? 'bg-[#0D0D0D]/95 border-gold/20 shadow-gold/5' : 'bg-white/95 border-gold/10'
     }`}>
-      <div className="flex justify-around items-center h-20">
+      <div className="flex justify-around items-center h-16 sm:h-20">
         {tabs.map((tab) => (
           <button
             key={tab.id}
             onClick={() => onTabChange(tab.id)}
             className={`flex flex-col items-center justify-center w-full h-full transition-all duration-300 relative group`}
           >
-            <tab.icon size={22} strokeWidth={activeTab === tab.id ? 3 : 2} className={`transition-all duration-300 ${activeTab === tab.id ? 'scale-110' : 'opacity-40 hover:opacity-70'}`} />
-            <span className={`text-[9px] mt-1.5 font-black tracking-[0.2em] uppercase transition-all duration-300 ${
+            <tab.icon size={20} strokeWidth={activeTab === tab.id ? 3 : 2} className={`transition-all duration-300 sm:size-[22px] ${activeTab === tab.id ? 'scale-110' : 'opacity-40 hover:opacity-70'}`} />
+            <span className={`text-[8px] sm:text-[10px] mt-1 sm:mt-1.5 font-black tracking-widest sm:tracking-[0.2em] uppercase transition-all duration-300 ${
               activeTab === tab.id ? 'opacity-100' : 'opacity-0 scale-90'
             }`}>
               {tab.label}
             </span>
-            <div className={`absolute -top-[2px] left-1/2 -translate-x-1/2 w-12 h-1 gold-gradient rounded-full shadow-[0_0_10px_rgba(197,160,89,0.5)] transition-all duration-500 ${activeTab === tab.id ? 'opacity-100 scale-100' : 'opacity-0 scale-0'}`} />
+            <div className={`absolute -top-[1px] left-1/2 -translate-x-1/2 w-8 sm:w-12 h-0.5 sm:h-1 gold-gradient rounded-full shadow-[0_0_10px_rgba(197,160,89,0.5)] transition-all duration-500 ${activeTab === tab.id ? 'opacity-100 scale-100' : 'opacity-0 scale-0'}`} />
           </button>
         ))}
       </div>
@@ -115,48 +115,48 @@ const QuoteCard = ({
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, scale: 0.9 }}
-      className={`relative w-full max-w-sm mx-auto aspect-[3/4] p-10 flex flex-col justify-center gap-8 rounded-[40px] shadow-2xl overflow-hidden border-2 transition-all duration-700 ${
+      className={`relative w-full max-w-[340px] sm:max-w-sm mx-auto aspect-[4/5] sm:aspect-[3/4] p-8 sm:p-10 flex flex-col justify-center gap-6 sm:gap-8 rounded-[32px] sm:rounded-[40px] shadow-2xl overflow-hidden border-2 transition-all duration-700 ${
         theme === 'dark' 
           ? 'bg-[#151515] border-gold/40 shadow-gold/10' 
           : 'bg-white border-gold/30 shadow-2xl shadow-gold/20'
       }`}
     >
       {/* Decorative background element */}
-      <div className={`absolute top-[-10%] right-[-10%] w-48 h-48 blur-[80px] rounded-full opacity-40 transition-colors duration-700 ${
+      <div className={`absolute top-[-10%] right-[-10%] w-32 h-32 sm:w-48 sm:h-48 blur-[60px] sm:blur-[80px] rounded-full opacity-40 transition-colors duration-700 ${
         theme === 'dark' ? 'bg-gold' : 'bg-gold-light'
       }`} />
       
       <div className="relative z-10 text-center flex flex-col items-center">
-        <span className={`text-7xl font-display font-black leading-none opacity-20 ${theme === 'dark' ? 'text-gold' : 'text-gold-dark'}`}>“</span>
-        <h2 className={`text-2xl md:text-3xl font-display font-extrabold leading-[1.1] mb-10 tracking-tight ${theme === 'dark' ? 'text-white' : 'text-[#0D0D0D]'}`}>
+        <span className={`text-6xl sm:text-7xl font-display font-black leading-none opacity-20 ${theme === 'dark' ? 'text-gold' : 'text-gold-dark'}`}>“</span>
+        <h2 className={`text-xl sm:text-2xl md:text-3xl font-display font-extrabold leading-[1.2] sm:leading-[1.1] mb-6 sm:mb-10 tracking-tight ${theme === 'dark' ? 'text-white' : 'text-[#0D0D0D]'}`}>
           {quote.text}
         </h2>
-        <div className="flex flex-col items-center gap-4">
-          <div className={`w-16 h-1 rounded-full gold-gradient`} />
-          <p className={`text-[11px] font-black tracking-[0.3em] uppercase mt-1 ${theme === 'dark' ? 'text-gold-light' : 'text-gold-dark'}`}>
+        <div className="flex flex-col items-center gap-3 sm:gap-4">
+          <div className={`w-12 sm:w-16 h-1 rounded-full gold-gradient`} />
+          <p className={`text-[10px] sm:text-[11px] font-black tracking-[0.3em] uppercase mt-1 ${theme === 'dark' ? 'text-gold-light' : 'text-gold-dark'}`}>
             {quote.author}
           </p>
         </div>
       </div>
 
-      <div className="absolute bottom-10 left-10 right-10 flex justify-between items-center z-10">
+      <div className="absolute bottom-8 sm:bottom-10 left-8 sm:left-10 right-8 sm:right-10 flex justify-between items-center z-10">
         <button 
           onClick={() => onToggleFavorite(quote)}
-          className={`p-4 rounded-2xl backdrop-blur-md transition-all active:scale-90 ${
+          className={`p-3 sm:p-4 rounded-xl sm:rounded-2xl backdrop-blur-md transition-all active:scale-90 ${
             isFavorite 
               ? 'bg-red-500/15 text-red-500' 
               : theme === 'dark' ? 'bg-white/5 text-gray-400 hover:text-gold hover:bg-gold/10' : 'bg-gold/10 text-gold-dark hover:bg-gold/20'
           }`}
         >
-          <Heart size={20} fill={isFavorite ? "currentColor" : "none"} strokeWidth={3} />
+          <Heart size={18} fill={isFavorite ? "currentColor" : "none"} strokeWidth={3} className="sm:size-5" />
         </button>
         <button 
           onClick={() => onShare(quote)}
-          className={`p-4 rounded-2xl backdrop-blur-md transition-all active:scale-90 ${
+          className={`p-3 sm:p-4 rounded-xl sm:rounded-2xl backdrop-blur-md transition-all active:scale-90 ${
             theme === 'dark' ? 'bg-white/5 text-gray-400 hover:text-gold hover:bg-gold/10' : 'bg-gold/10 text-gold-dark hover:bg-gold/20'
           }`}
         >
-          <Share2 size={20} strokeWidth={3} />
+          <Share2 size={18} strokeWidth={3} className="sm:size-5" />
         </button>
       </div>
     </motion.div>
@@ -294,21 +294,21 @@ export default function App() {
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: 20 }}
-              className="space-y-8"
+              className="space-y-6 sm:space-y-8"
             >
               <div className="flex justify-between items-end">
                 <div>
-                  <h1 className="text-5xl font-display font-black tracking-tighter gold-text-gradient">
+                  <h1 className="text-4xl sm:text-5xl font-display font-black tracking-tighter gold-text-gradient">
                     MINDFUEL
                   </h1>
-                  <p className="text-gold-dark text-[10px] mt-2 uppercase tracking-[0.4em] font-black opacity-70">Elevate Your Existence</p>
+                  <p className="text-gold-dark text-[9px] sm:text-[10px] mt-2 uppercase tracking-[0.4em] font-black opacity-70">Elevate Your Existence</p>
                 </div>
-                <div className="text-right">
+                <div className="text-right hidden sm:block">
                   <p className="text-[9px] text-gray-500 uppercase tracking-widest font-black opacity-50">EST. 2024</p>
                 </div>
               </div>
 
-              <div className="space-y-6">
+              <div className="space-y-4 sm:space-y-6">
                 <QuoteCard 
                   quote={dailyQuotes[currentQuoteIndex]}
                   isFavorite={favorites.some(f => f.id === dailyQuotes[currentQuoteIndex].id)}
@@ -332,12 +332,12 @@ export default function App() {
                 </div>
               </div>
               
-              <div className={`p-8 rounded-[40px] border-2 transition-all duration-700 ${settings.theme === 'dark' ? 'bg-[#151515] border-white/5 shadow-2xl' : 'bg-white border-gold/10 shadow-xl shadow-gold/5'}`}>
-                <h3 className="text-[10px] font-black uppercase tracking-[0.3em] mb-4 flex items-center gap-2 text-gold-dark">
+              <div className={`p-6 sm:p-8 rounded-[32px] sm:rounded-[40px] border-2 transition-all duration-700 ${settings.theme === 'dark' ? 'bg-[#151515] border-white/5 shadow-2xl' : 'bg-white border-gold/10 shadow-xl shadow-gold/5'}`}>
+                <h3 className="text-[9px] sm:text-[10px] font-black uppercase tracking-[0.3em] mb-3 sm:mb-4 flex items-center gap-2 text-gold-dark">
                   <Flame size={14} strokeWidth={3} />
                   Initiatory Protocol
                 </h3>
-                <p className={`text-sm font-bold leading-relaxed ${settings.theme === 'dark' ? 'text-white/60' : 'text-gold-dark/70'}`}>
+                <p className={`text-xs sm:text-sm font-bold leading-relaxed ${settings.theme === 'dark' ? 'text-white/60' : 'text-gold-dark/70'}`}>
                   Anchor your consciousness. The discipline you execute today defines the legend you become tomorrow.
                 </p>
               </div>
@@ -352,30 +352,30 @@ export default function App() {
               exit={{ opacity: 0, x: 20 }}
             >
               {!selectedCategory ? (
-                <div className="space-y-10">
-                  <div className="mb-8">
-                    <h2 className="text-4xl font-display font-black tracking-tight uppercase">Categories</h2>
-                    <p className="text-gold-dark text-[10px] mt-2 uppercase tracking-[0.4em] font-black opacity-60">Mastery Tracks</p>
+                <div className="space-y-8 sm:space-y-10">
+                  <div className="mb-6 sm:mb-8">
+                    <h2 className="text-3xl sm:text-4xl font-display font-black tracking-tight uppercase">Categories</h2>
+                    <p className="text-gold-dark text-[9px] sm:text-[10px] mt-2 uppercase tracking-[0.4em] font-black opacity-60">Mastery Tracks</p>
                   </div>
-                  <div className="grid grid-cols-2 xs:grid-cols-3 gap-4">
+                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4">
                     {CATEGORIES.map((cat) => {
                       const Icon = IconMap[cat.icon] || Book;
                       return (
                         <button
                           key={cat.id}
                           onClick={() => setSelectedCategory(cat.id)}
-                          className={`flex flex-col items-center justify-center p-6 rounded-[32px] transition-all active:scale-95 border-2 ${
+                          className={`flex flex-col items-center justify-center p-4 sm:p-6 rounded-[24px] sm:rounded-[32px] transition-all active:scale-95 border-2 ${
                             settings.theme === 'dark' 
                               ? 'bg-[#151515] border-white/5 hover:border-gold/50 shadow-xl shadow-black/20' 
                               : 'bg-white border-gold/10 shadow-lg shadow-gold/5 hover:border-gold/40'
                           }`}
                         >
-                          <div className={`p-4 rounded-2xl mb-4 ${
+                          <div className={`p-3 sm:p-4 rounded-xl sm:rounded-2xl mb-3 sm:mb-4 ${
                             settings.theme === 'dark' ? 'bg-gold/15 text-gold' : 'bg-gold/10 text-gold-dark'
                           }`}>
-                            <Icon size={24} strokeWidth={2.5} />
+                            <Icon size={20} strokeWidth={2.5} className="sm:size-6" />
                           </div>
-                          <span className={`text-[10px] font-black leading-tight text-center tracking-[0.15em] uppercase transition-colors ${
+                          <span className={`text-[8px] sm:text-[10px] font-black leading-tight text-center tracking-widest sm:tracking-[0.15em] uppercase transition-colors ${
                             settings.theme === 'dark' ? 'text-white/70' : 'text-gold-dark'
                           }`}>{cat.title}</span>
                         </button>
@@ -388,25 +388,25 @@ export default function App() {
                   <div className="flex items-center justify-between">
                     <button 
                       onClick={() => setSelectedCategory(null)}
-                      className="text-sm font-bold flex items-center gap-2 opacity-60 hover:opacity-100"
+                      className="text-xs sm:text-sm font-bold flex items-center gap-2 opacity-60 hover:opacity-100"
                     >
-                      <ChevronRight size={16} className="rotate-180" /> Back
+                      <ChevronRight size={14} className="rotate-180 sm:size-4" /> Back
                     </button>
-                    <h2 className="text-xl font-bold">{CATEGORIES.find(c => c.id === selectedCategory)?.title}</h2>
+                    <h2 className="text-lg sm:text-xl font-bold">{CATEGORIES.find(c => c.id === selectedCategory)?.title}</h2>
                   </div>
                   <div className="space-y-4">
                     {filteredQuotes.map((q) => (
                       <div 
                         key={q.id}
-                        className={`p-8 rounded-[32px] border-2 transition-all ${
+                        className={`p-6 sm:p-8 rounded-[28px] sm:rounded-[32px] border-2 transition-all ${
                           settings.theme === 'dark' 
                             ? 'bg-[#151515] border-white/5 shadow-xl' 
                             : 'bg-white border-gold/10 shadow-lg shadow-gold/5'
                         }`}
                       >
-                        <p className="text-xl mb-6 font-display font-black leading-tight tracking-tight">"{q.text}"</p>
+                        <p className="text-lg sm:text-xl mb-4 sm:mb-6 font-display font-black leading-tight tracking-tight">"{q.text}"</p>
                         <div className="flex justify-between items-center">
-                          <span className={`text-[10px] font-black tracking-[0.25em] uppercase ${settings.theme === 'dark' ? 'text-gold' : 'text-gold-dark'}`}>
+                          <span className={`text-[9px] sm:text-[10px] font-black tracking-[0.25em] uppercase ${settings.theme === 'dark' ? 'text-gold' : 'text-gold-dark'}`}>
                             {q.author}
                           </span>
                           <div className="flex gap-2">
@@ -434,9 +434,9 @@ export default function App() {
               exit={{ opacity: 0, x: 20 }}
               className="space-y-8"
             >
-              <div>
-                <h2 className="text-3xl font-bold">Your Favorites</h2>
-                <p className="text-gray-500 text-sm mt-1">Saved for your continuous growth</p>
+              <div className="mb-6 sm:mb-8">
+                <h2 className="text-3xl sm:text-4xl font-display font-black tracking-tight uppercase">Your Saved</h2>
+                <p className="text-gold-dark text-[9px] sm:text-[10px] mt-2 uppercase tracking-[0.4em] font-black opacity-60">Growth Archives</p>
               </div>
 
               {favorites.length === 0 ? (
@@ -444,7 +444,7 @@ export default function App() {
                   <div className="p-6 rounded-full bg-white/5">
                     <Heart size={48} className="text-gray-600" />
                   </div>
-                  <p>Nothing saved yet. Explore and heart quotes you love!</p>
+                  <p className="text-xs sm:text-sm">Nothing saved yet. Explore and heart quotes you love!</p>
                 </div>
               ) : (
                 <div className="space-y-4">
@@ -452,20 +452,20 @@ export default function App() {
                     <motion.div 
                       layout
                       key={q.id}
-                      className={`p-6 rounded-2xl border ${
-                        settings.theme === 'dark' ? 'bg-white/5 border-white/10' : 'bg-white border-gray-100 shadow-sm'
+                      className={`p-6 sm:p-8 rounded-[28px] sm:rounded-[32px] border-2 transition-all ${
+                        settings.theme === 'dark' ? 'bg-[#151515] border-white/5 shadow-xl' : 'bg-white border-gold/10 shadow-lg shadow-gold/5'
                       }`}
                     >
-                      <p className="text-xl mb-4 font-display font-black leading-tight tracking-tight">"{q.text}"</p>
+                      <p className="text-lg sm:text-xl mb-4 sm:mb-6 font-display font-black leading-tight tracking-tight">"{q.text}"</p>
                       <div className="flex justify-between items-center">
-                        <span className={`text-xs font-bold uppercase tracking-widest ${settings.theme === 'dark' ? 'text-gold' : 'text-blue-600'}`}>
+                        <span className={`text-[9px] sm:text-[10px] font-black tracking-[0.2em] uppercase ${settings.theme === 'dark' ? 'text-gold' : 'text-gold-dark'}`}>
                           {q.author}
                         </span>
-                        <div className="flex gap-2">
-                          <button onClick={() => toggleFavorite(q)} className="p-2 text-red-500">
+                        <div className="flex gap-1 sm:gap-2">
+                          <button onClick={() => toggleFavorite(q)} className="p-2 text-red-500 hover:bg-red-500/10 rounded-full transition-colors">
                             <Trash2 size={16} />
                           </button>
-                          <button onClick={() => shareQuote(q)} className="p-2 text-gray-400">
+                          <button onClick={() => shareQuote(q)} className="p-2 text-gray-400 hover:text-gold transition-colors">
                             <Share2 size={16} />
                           </button>
                         </div>
@@ -485,86 +485,86 @@ export default function App() {
               exit={{ opacity: 0, x: 20 }}
               className="space-y-8"
             >
-              <div>
-                <h2 className="text-4xl font-display font-black tracking-tight uppercase gold-text-gradient">Settings</h2>
-                <p className="text-gold-dark text-[10px] mt-2 uppercase tracking-[0.4em] font-black opacity-60">System Configuration</p>
+              <div className="mb-6 sm:mb-8">
+                <h2 className="text-3xl sm:text-4xl font-display font-black tracking-tight uppercase gold-text-gradient">Settings</h2>
+                <p className="text-gold-dark text-[9px] sm:text-[10px] mt-2 uppercase tracking-[0.4em] font-black opacity-60">System Configuration</p>
               </div>
 
-              <div className="space-y-6 pb-32">
-                <section className={`p-6 rounded-3xl space-y-4 transition-all duration-500 ${settings.theme === 'dark' ? 'bg-white/5 border border-white/5 shadow-2xl shadow-black' : 'bg-white border border-gray-100 shadow-sm shadow-blue-900/5'}`}>
-                  <h3 className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-500 flex items-center gap-2">
+              <div className="space-y-4 sm:space-y-6 pb-32">
+                <section className={`p-5 sm:p-6 rounded-[28px] sm:rounded-3xl space-y-4 transition-all duration-500 ${settings.theme === 'dark' ? 'bg-[#151515] border border-white/5 shadow-2xl' : 'bg-white border border-gold/10 shadow-sm'}`}>
+                  <h3 className="text-[9px] sm:text-[10px] font-black uppercase tracking-[0.2em] text-gray-500 flex items-center gap-2">
                      Appearance
                   </h3>
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3">
-                      {settings.theme === 'dark' ? <Moon size={20} className="text-gold" /> : <Sun size={20} className="text-blue-500" />}
-                      <span className="font-bold text-sm tracking-tight">Premium Mode</span>
+                      {settings.theme === 'dark' ? <Moon size={18} className="text-gold sm:size-5" /> : <Sun size={18} className="text-blue-500 sm:size-5" />}
+                      <span className="font-bold text-xs sm:text-sm tracking-tight">Premium Mode</span>
                     </div>
                     <button 
                       onClick={() => setSettings(prev => ({ ...prev, theme: prev.theme === 'dark' ? 'light' : 'dark' }))}
-                      className={`w-12 h-6 rounded-full transition-colors relative ${settings.theme === 'dark' ? 'bg-gold' : 'bg-gray-200'}`}
+                      className={`w-10 sm:w-12 h-5 sm:h-6 rounded-full transition-colors relative ${settings.theme === 'dark' ? 'bg-gold' : 'bg-gray-200'}`}
                     >
                       <motion.div 
-                        animate={{ x: settings.theme === 'dark' ? 26 : 2 }}
-                        className="absolute top-1 left-0 w-4 h-4 bg-white rounded-full shadow-sm" 
+                        animate={{ x: settings.theme === 'dark' ? (window.innerWidth < 640 ? 22 : 26) : 2 }}
+                        className="absolute top-0.5 sm:top-1 left-0 w-4 h-4 bg-white rounded-full shadow-sm" 
                       />
                     </button>
                   </div>
                 </section>
 
-                <section className={`p-6 rounded-3xl space-y-4 transition-all duration-500 ${settings.theme === 'dark' ? 'bg-white/5 border border-white/5 shadow-2xl shadow-black' : 'bg-white border border-gray-100 shadow-sm shadow-blue-900/5'}`}>
-                  <h3 className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-500 flex items-center gap-2">
+                <section className={`p-5 sm:p-6 rounded-[28px] sm:rounded-3xl space-y-4 transition-all duration-500 ${settings.theme === 'dark' ? 'bg-[#151515] border border-white/5 shadow-2xl' : 'bg-white border border-gold/10 shadow-sm'}`}>
+                  <h3 className="text-[9px] sm:text-[10px] font-black uppercase tracking-[0.2em] text-gray-500 flex items-center gap-2">
                     <Bell size={14} /> Notifications
                   </h3>
                   <div className="flex items-center justify-between">
-                    <span className="font-bold text-sm tracking-tight">Daily Reminders</span>
+                    <span className="font-bold text-xs sm:text-sm tracking-tight">Daily Reminders</span>
                     <button 
                       onClick={() => setSettings(prev => ({ ...prev, notificationsEnabled: !prev.notificationsEnabled }))}
-                      className={`w-12 h-6 rounded-full transition-colors relative ${settings.notificationsEnabled ? (settings.theme === 'dark' ? 'bg-gold' : 'bg-blue-600') : 'bg-gray-200'}`}
+                      className={`w-10 sm:w-12 h-5 sm:h-6 rounded-full transition-colors relative ${settings.notificationsEnabled ? (settings.theme === 'dark' ? 'bg-gold' : 'bg-blue-600') : 'bg-gray-200'}`}
                     >
                       <motion.div 
-                        animate={{ x: settings.notificationsEnabled ? 26 : 2 }}
-                        className="absolute top-1 left-0 w-4 h-4 bg-white rounded-full shadow-sm" 
+                        animate={{ x: settings.notificationsEnabled ? (window.innerWidth < 640 ? 22 : 26) : 2 }}
+                        className="absolute top-0.5 sm:top-1 left-0 w-4 h-4 bg-white rounded-full shadow-sm" 
                       />
                     </button>
                   </div>
                   {settings.notificationsEnabled && (
-                    <div className="flex gap-2 pt-2">
-                       {['morning', 'afternoon', 'night'].map((time) => (
+                    <div className="flex gap-2 pt-2 overflow-x-auto pb-1 no-scrollbar">
+                       {['morning', 'afternoon', 'night', '3x-daily'].map((time) => (
                          <button
                            key={time}
                            onClick={() => setSettings(prev => ({ ...prev, notificationTiming: time as any }))}
-                           className={`px-4 py-2 rounded-xl text-[9px] font-black uppercase tracking-widest transition-all ${
+                           className={`px-3 sm:px-4 py-2 rounded-xl text-[8px] sm:text-[9px] font-black uppercase tracking-widest transition-all whitespace-nowrap ${
                              settings.notificationTiming === time 
                                ? (settings.theme === 'dark' ? 'bg-gold text-black shadow-lg shadow-gold/20' : 'bg-blue-600 text-white shadow-lg shadow-blue-600/20')
                                : (settings.theme === 'dark' ? 'bg-white/5 text-gray-400' : 'bg-gray-50 text-gray-400')
                            }`}
                          >
-                           {time}
+                           {time.replace('-', ' ')}
                          </button>
                        ))}
                     </div>
                   )}
                 </section>
 
-                <section className={`p-6 rounded-3xl space-y-4 transition-all duration-500 ${settings.theme === 'dark' ? 'bg-white/5 border border-white/5 shadow-2xl shadow-black' : 'bg-white border border-gray-100 shadow-sm shadow-blue-900/5'}`}>
-                  <h3 className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-500">Support & About</h3>
+                <section className={`p-5 sm:p-6 rounded-[28px] sm:rounded-3xl space-y-4 transition-all duration-500 ${settings.theme === 'dark' ? 'bg-[#151515] border border-white/5 shadow-2xl' : 'bg-white border border-gold/10 shadow-sm'}`}>
+                  <h3 className="text-[9px] sm:text-[10px] font-black uppercase tracking-[0.2em] text-gray-500">Support & About</h3>
                   <div className="space-y-4">
-                    <button className="flex items-center justify-between w-full font-bold text-sm tracking-tight group">
+                    <button className="flex items-center justify-between w-full font-bold text-xs sm:text-sm tracking-tight group">
                       <span className="flex items-center gap-3"><Info size={18} className="text-gray-400" /> Rate App</span>
-                      <ChevronRight size={18} className="opacity-30 group-hover:opacity-100 transition-opacity" />
+                      <ChevronRight size={16} className="opacity-30 group-hover:opacity-100 transition-opacity" />
                     </button>
-                    <button className="flex items-center justify-between w-full font-bold text-sm tracking-tight group">
+                    <button className="flex items-center justify-between w-full font-bold text-xs sm:text-sm tracking-tight group">
                       <span className="flex items-center gap-3"><Share2 size={18} className="text-gray-400" /> Share App</span>
-                      <ChevronRight size={18} className="opacity-30 group-hover:opacity-100 transition-opacity" />
+                      <ChevronRight size={16} className="opacity-30 group-hover:opacity-100 transition-opacity" />
                     </button>
                   </div>
-                  
-                  <div className="pt-8 border-t border-gold/10 mt-6 text-center">
-                    <p className="text-[10px] text-gold-dark/50 leading-relaxed uppercase tracking-[0.3em] font-black mb-1">
+
+                  <div className="pt-6 sm:pt-8 border-t border-gold/10 mt-4 sm:mt-6 text-center">
+                    <p className="text-[9px] sm:text-[10px] text-gold-dark/50 leading-relaxed uppercase tracking-[0.3em] font-black mb-1">
                       Elevation Protocol
                     </p>
-                    <p className="font-display font-black text-xl gold-text-gradient">
+                    <p className="font-display font-black text-lg sm:text-xl gold-text-gradient">
                       Sanntanu Halder
                     </p>
                   </div>
@@ -596,7 +596,7 @@ export default function App() {
               className="bg-[#121212] border border-gold/20 rounded-3xl p-6 w-full max-w-sm space-y-6"
             >
               <div className="flex justify-between items-center">
-                <h3 className="text-gold font-bold uppercase tracking-widest text-xs">Share Inspo</h3>
+                <h3 className="text-white font-bold uppercase tracking-widest text-xs">Share Inspo</h3>
                 <button onClick={() => setIsSharing(false)} className="text-gray-500 hover:text-white">
                   <Trash2 size={18} />
                 </button>
@@ -605,24 +605,24 @@ export default function App() {
               {/* The element we capture */}
               <div 
                 ref={shareRef}
-                className="aspect-[4/5] w-full bg-gradient-to-br from-[#1A1A1A] to-[#0A0A0A] p-10 flex flex-col justify-center items-center text-center relative overflow-hidden border border-gold/5"
+                className="aspect-[4/5] w-full bg-gradient-to-br from-[#2D1B69] via-[#4C1D95] to-[#1E1B4B] p-10 flex flex-col justify-center items-center text-center relative overflow-hidden border border-white/10"
               >
-                <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
-                  <div className="absolute top-0 right-0 w-32 h-32 bg-gold blur-[60px] rounded-full" />
-                  <div className="absolute bottom-0 left-0 w-32 h-32 bg-gold blur-[60px] rounded-full" />
+                <div className="absolute top-0 left-0 w-full h-full opacity-20 pointer-events-none">
+                  <div className="absolute top-[10%] right-[-10%] w-48 h-48 bg-gold blur-[80px] rounded-full" />
+                  <div className="absolute bottom-[10%] left-[-10%] w-48 h-48 bg-purple-500 blur-[80px] rounded-full" />
                 </div>
                 
-                <Sparkles size={24} className="text-gold/20 mb-8" />
-                <p className="text-xl md:text-2xl font-serif text-white mb-6 leading-relaxed relative z-10">
+                <Sparkles size={24} className="text-gold/30 mb-8" />
+                <p className="text-xl md:text-2xl font-display font-black text-white mb-6 leading-relaxed relative z-10 tracking-tight">
                   "{sharingQuote.text}"
                 </p>
-                <p className="text-gold uppercase tracking-[0.2em] text-[10px] font-bold mb-12 relative z-10">
+                <p className="text-gold-light uppercase tracking-[0.3em] text-[10px] font-black mb-12 relative z-10">
                   — {sharingQuote.author}
                 </p>
 
-                <div className="mt-auto pt-6 border-t border-gold/10 w-full relative z-10">
-                  <p className="text-white/30 text-[8px] font-bold tracking-[0.3em] uppercase">
-                    MindFuel Daily | Shantanu Halder
+                <div className="mt-auto pt-6 border-t border-white/10 w-full relative z-10">
+                  <p className="text-white/40 text-[8px] font-black tracking-[0.4em] uppercase">
+                    MindFuel Daily | {sharingQuote.author === 'Sanntanu Halder' ? 'Sanntanu Halder' : 'Protocol'}
                   </p>
                 </div>
               </div>
@@ -630,7 +630,7 @@ export default function App() {
               <div className="grid grid-cols-2 gap-3">
                 <button 
                   onClick={async () => {
-                    const text = `"${sharingQuote.text}" - ${sharingQuote.author}\n\nMindFuel Daily | Shantanu Halder`;
+                    const text = `"${sharingQuote.text}" - ${sharingQuote.author}\n\nMindFuel Daily | Sanntanu Halder`;
                     if (navigator.share) {
                       await navigator.share({ text });
                     } else {

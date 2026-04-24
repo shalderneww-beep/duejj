@@ -3,7 +3,7 @@ export type Theme = 'dark' | 'light';
 export interface AppSettings {
   theme: Theme;
   notificationsEnabled: boolean;
-  notificationTiming: 'morning' | 'afternoon' | 'night';
+  notificationTiming: 'morning' | 'afternoon' | 'night' | '3x-daily';
 }
 
 export interface Quote {
