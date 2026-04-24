@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-gold: #C5A059;
+  --color-gold-light: #E5C78B;
+  --color-gold-dark: #8E6E36;
+  --font-display: "Outfit", sans-serif;
+  --font-sans: "Inter", sans-serif;
+}
+
+@layer base {
+  body {
+    @apply font-sans;
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  /* Safe area insets for mobile */
+  .pb-safe {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
+
+.gold-gradient {
+  background: linear-gradient(135deg, #C5A059 0%, #E5C78B 50%, #C5A059 100%);
+}
+
+.gold-text-gradient {
+  background: linear-gradient(135deg, #8E6E36 0%, #C5A059 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
